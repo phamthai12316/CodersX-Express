@@ -6,6 +6,10 @@
 const express = require('express');
 const app = express();
 
+var todos = [
+      {work: "Đi chợ"},{work: "Nấu cơm"},{work: "Rửa bát"},{work: "Học code tại CodersX"}
+    ]
+
 app.set('view engine', 'pug');
 app.set('views', './views');
 // https://expressjs.com/en/starter/basic-routing.html
@@ -15,9 +19,17 @@ app.get('/', (req, res) => {
 
 app.get('/todos', (request, res) => {
   res.render('todos/index',{
-    todos: [
-      {work: "Đi chợ"},{work: "Nấu cơm"},{work: "Rửa bát"},{work: "Học code tại CodersX"}
-    ]
+    todos: todos
+  })
+})
+
+app.get('/todos/search',(req, res) => {
+  var q = req.query.q;
+  var matchedTodo = todos.filter((todo)=>{
+    return todo.work.toLowerCase().indexOf(q.toLowerCase()) !== -1
+  })
+  res.render('todos/index',{
+    todos: matchedTodo
   })
 })
 
