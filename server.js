@@ -8,10 +8,18 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const low = require('lowdb');
+const shortid = require('shortid');
 
-var todos = [
-      {work: "Đi chợ"},{work: "Nấu cơm"},{work: "Rửa bát"},{work: "Học code tại CodersX"}
-    ]
+const FileSync = require('lowdb/adapters/FileSync');
+
+const adapter = new FileSync('db.json');
+const db = low(adapter);
+
+// Set some defaults (required if your JSON file is empty)
+db.defaults({ todos: []})
+  .write()
+
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -26,13 +34,13 @@ app.get('/', (req, res) => {
 
 app.get('/todos', (request, res) => {
   res.render('todos/index',{
-    todos: todos
+    todos: db.get('todos').value()
   })
 })
 
 app.get('/todos/search',(req, res) => {
   var q = req.query.q;
-  var matchedTodo = todos.filter((todo)=>{
+  var matchedTodo = db.get('todos').value().filter((todo)=>{
     return todo.work.toLowerCase().indexOf(q.toLowerCase()) !== -1
   })
   res.render('todos/index',{
@@ -45,8 +53,18 @@ app.get('/todos/create',(req,res)=>{
 })
 
 app.post('/todos/create',(req,res)=>{
-  todos.push(req.body);
+  req.body.id = shortid.generate();
+  db.get('todos').push(req.body).write();
   res.redirect('/todos');
+})
+
+app.get('/todos/:id', (req,res)=>{
+  var id = req.params.id;
+  var todo = db.get('todos').find({id: id}).value();
+  console.log(todo);
+  res.render('todos/view',{
+    todos: todo
+  })
 })
 
 // listen for requests :)
