@@ -5,7 +5,4 @@ h1 Todo List
     button Search
   ul
     each todo in todos
-      li
-        span= todo.work
-        span &nbsp;
-        a(href="/todos/" + todo.id) View
+      li= todo.work

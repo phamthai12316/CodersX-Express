@@ -9,8 +9,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const low = require('lowdb');
-const shortid = require('shortid');
-
 const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
@@ -53,18 +51,8 @@ app.get('/todos/create',(req,res)=>{
 })
 
 app.post('/todos/create',(req,res)=>{
-  req.body.id = shortid.generate();
   db.get('todos').push(req.body).write();
   res.redirect('/todos');
-})
-
-app.get('/todos/:id', (req,res)=>{
-  var id = req.params.id;
-  var todo = db.get('todos').find({id: id}).value();
-  console.log(todo);
-  res.render('todos/view',{
-    todos: todo
-  })
 })
 
 // listen for requests :)
