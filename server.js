@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var userRoute = require('./routes/user.route');
 var bookRoute = require('./routes/book.route');
+var transactionRoute = require('./routes/transaction.route');
+
 var port = 3000;
 
 var app = express();
@@ -24,6 +26,7 @@ app.get('/', function(req, res){
 
 app.use('/users', userRoute);
 app.use('/books', bookRoute);
+app.use('/transactions', transactionRoute);
 
 app.listen(port, function(){
   console.log('Sever listening on port ' + port)
