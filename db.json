@@ -16,5 +16,12 @@
       "description": "Best book ever 1",
       "id": "Tfno4AMNY"
     }
+  ],
+  "transactions": [
+    {
+      "userId": "UBWOIkwAw",
+      "bookId": "PMEh-5AZ_",
+      "id": "A1plL2xEL"
+    }
   ]
 }
