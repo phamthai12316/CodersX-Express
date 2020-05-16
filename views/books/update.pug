@@ -1,8 +1,11 @@
-h1 Update book
-  b= books.name
-  form(action="/books/" + books.id + "/update", method="POST")
-    label Title
-    input(type="text" name="title")
-    label Description
-    input(type="text" name="description")
-    button Update
+extends ../layouts/common.pug
+
+block content
+  h1 Update book
+    b= books.name
+    form(action="/books/" + books.id + "/update", method="POST")
+      label Title
+      input(type="text" name="title")
+      label Description
+      input(type="text" name="description")
+      button Update

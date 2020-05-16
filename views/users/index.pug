@@ -1,15 +1,18 @@
-h1 User list 
-  a(href="/users/create") Create New User  
-  form(action="/users/search", method="GET")
-    input(type="text" name="q")
-    button Search
-  ul  
-    each user in users
-      li
-        span= user.name
-        span &nbsp;
-        a(href="/users/" + user.id) View
-        span &nbsp;
-        a(href="/users/" + user.id + "/delete") Delete
-        span &nbsp;
-        a(href="/users/" + user.id + "/update") Update
+extends ../layouts/common.pug
+
+block content
+  h1 User List 
+    a(href="/users/create") Create New User  
+    form(action="/users/search", method="GET")
+      input(type="text" name="q")
+      button Search
+    ul  
+      each user in users
+        li
+          span= user.name
+          span &nbsp;
+          a(href="/users/" + user.id) View
+          span &nbsp;
+          a(href="/users/" + user.id + "/delete") Delete
+          span &nbsp;
+          a(href="/users/" + user.id + "/update") Update
