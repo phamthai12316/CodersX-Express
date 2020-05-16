@@ -19,9 +19,12 @@
   ],
   "transactions": [
     {
+      "id": "RlAgEB2X2",
       "userId": "UBWOIkwAw",
       "bookId": "PMEh-5AZ_",
-      "id": "A1plL2xEL"
+      "userName": "tg",
+      "bookTitle": "How to stop worrying and start living",
+      "isComplete": true
     }
   ]
 }
