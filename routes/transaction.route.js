@@ -1,28 +1,15 @@
 var express = require('express');
-var shortid = require('shortid');
 
-var db = require('../db');
+var transactionController = require('../controllers/transaction.controller');
 
 var router = express.Router();
 
+router.get('/', transactionController.index);
 
-router.get('/', function(req, res){
-  res.render('transactions/index',{
-    transactions : db.get('transactions').value()
-  });
-})
+router.get('/create', transactionController.create);
 
-router.get('/create', function(req,res){
-  res.render('transactions/create',{
-    users: db.get('users').value(),
-    books: db.get('books').value()
-  })
-})
+router.post('/create', transactionController.postCreate);
 
-router.post('/create', function(req, res){
-  req.body.id =  shortid.generate();
-  db.get('transactions').push(req.body).write();
-  res.redirect('/transactions');
-})
+router.get('/:id/complete', transactionController.complete);
 
 module.exports = router
