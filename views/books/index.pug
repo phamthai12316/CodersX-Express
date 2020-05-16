@@ -1,15 +1,18 @@
-h1 Book list
-  a(href="/books/create") Create new book
-  form(action="/books/search", method="GET")
-    input(type="text" name="q")
-    button Search
-  ul
-    each book in books
-        li
-          span= book.title
-          span &nbsp;
-          a(href="/books/" +  book.id) View
-          span &nbsp;
-          a(href="/books/" +  book.id + "/delete") Delete
-          span &nbsp;
-          a(href="/books/" +  book.id + "/update") Update
+extends ../layouts/common.pug
+
+block content
+  h1 Book list
+    a(href="/books/create") Create new book
+    form(action="/books/search", method="GET")
+      input(type="text" name="q")
+      button Search
+    ul
+      each book in books
+          li
+            span= book.title
+            span &nbsp;
+            a(href="/books/" +  book.id) View
+            span &nbsp;
+            a(href="/books/" +  book.id + "/delete") Delete
+            span &nbsp;
+            a(href="/books/" +  book.id + "/update") Update

@@ -1,14 +1,17 @@
-h1 Transaction list
-a(href="transactions/create") Create transaction
-ul
-  each transaction in transactions
-    li
-      span= transaction.userName
-      span &nbsp;
-      span borrowed the book: 
-      span &nbsp;
-      span= transaction.bookTitle 
-    if !transaction.isComplete
-      a(href="/transactions/" +  transaction.id + "/complete") Complete
-    else 
-      span Complete Done    
+extends ../layouts/common.pug
+
+block content
+  h1 Transaction list
+  a(href="transactions/create") Create transaction
+  ul
+    each transaction in transactions
+      li
+        span= transaction.userName
+        span &nbsp;
+        span borrowed the book: 
+        span &nbsp;
+        span= transaction.bookTitle 
+      if !transaction.isComplete
+        a(href="/transactions/" +  transaction.id + "/complete") Complete
+      else 
+        span Complete Done    
