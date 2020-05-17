@@ -12,6 +12,7 @@ app.set('views', './views')
 
 app.use(bodyParser.urlencoded({ extended: true })) // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()) // parse application/json
+app.use(express.static('public')) 
 
 // app.get('/', function(req, res){
 //   res.send('<h1>Hello Coders.Tokyo</h1><a href="/users">User list</a>');
