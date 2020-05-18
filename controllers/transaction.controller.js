@@ -28,6 +28,11 @@ module.exports.postCreate = (req, res) => {
 }
 module.exports.complete = (req, res) => {
   var id = req.params.id;
-  db.get('transactions').find({ id: id}).assign({isComplete: true}).write();
-  res.redirect('/transactions');
+  var transaction = db.get('transactions').find({ id: id}).value();
+  if(transaction){
+    db.get('transactions').find({ id: transaction.id}).assign({isComplete: true}).write();
+    res.redirect('/transactions');
+  } else {
+    res.send('404 Not Found');
+  }
 }

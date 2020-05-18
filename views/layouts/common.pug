@@ -1,8 +1,23 @@
 html 
   head
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
-    link(rel="stylesheet", href="/styles/custom.css")
-    link(rel="icon", type="image/png", sizes="32x32", href="https://cdn.glitch.com/31043720-8668-4592-afd0-560238579b7d%2Ffavicon-32x32.png?v=1589698600163")
+    link(rel="stylesheet",href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+    link(rel="stylesheet",href="/styles/custom.css")
+    link(rel="icon", type="image/png", sizes="32x32", href="/images/favicon-32x32.png")
   body
+    block navbar
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+      a.navbar-brand(href='#') Express list
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href='/users') User list
+          li.nav-item
+            a.nav-link(href='/books') Book list
+          li.nav-item
+            a.nav-link(href='/transactions') Transaction list
+        form.form-inline.my-2.my-lg-0
+          input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
     block content
-      

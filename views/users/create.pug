@@ -2,7 +2,11 @@ extends ../layouts/common.pug
 
 block content  
   h1 Create User
-    form(action="/users/create", method="POST")
-      label Name
-      input(tpye="text" name="name")
-      button Create
+  if errors
+    each error in errors
+      .alert.alert-danger= error
+  form.form-inline(action="/users/create", method="POST")
+    .form-group
+      label(for="name") Name
+      input#name.form-control.mr-sm-2(type="text" name="name", value=values ? values.name : "")
+      button.btn.btn-primary Create
