@@ -5,9 +5,12 @@ var cookieParser = require('cookie-parser')
 
 var userRoute = require('./routes/user.route');
 var bookRoute = require('./routes/book.route');
+var authRoute = require('./routes/auth.route');
 var transactionRoute = require('./routes/transaction.route');
 
-var cookie = require('./middlewares/cookie.middleware');
+var authMiddleware = require('./middlewares/auth.middleware');
+
+// var cookie = require('./middlewares/cookie.middleware');
 
 var port = 3000;
 
@@ -26,16 +29,17 @@ app.use(express.static('public'))
 // })
 
 app.get('/', (req, res) => {
-  res.cookie("cookie-id", 12345);
   res.render('index',{
     name: "Thai"
   });
 })
 
-app.use(cookie.cookie);
-app.use('/users', userRoute);
-app.use('/books', bookRoute);
-app.use('/transactions', transactionRoute);
+// app.use(cookie.cookie);
+app.use('/users',authMiddleware.requireAuth, userRoute);
+app.use('/books',authMiddleware.requireAuth, bookRoute);
+app.use('/transactions',authMiddleware.requireAuth, transactionRoute);
+app.use('/auth', authRoute);
+
 
 app.listen(port, function(){
   console.log('Sever listening on port ' + port)

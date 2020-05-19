@@ -1,8 +1,17 @@
 {
   "users": [
     {
-      "name": "tg",
-      "id": "UBWOIkwAw"
+      "name": "Thai",
+      "id": "UBWOIkwAw",
+      "email": "thai@example.com",
+      "password": "123123",
+      "isAdmin": true
+    },
+    {
+      "name": "Hien",
+      "id": "UBWOIkwAs",
+      "email": "hien@example.com",
+      "password": "123123"
     }
   ],
   "books": [
